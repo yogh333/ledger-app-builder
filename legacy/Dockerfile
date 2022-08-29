@@ -83,6 +83,11 @@ COPY --from=LITE_BUILDER /opt/ /opt/
 # Default SDK
 ENV BOLOS_SDK=${NANOS_SDK}
 
+# Target files for Nano S, S+, X
+ENV RUST_SDK=/opt/rust-sdk
+RUN git clone https://github.com/LedgerHQ/ledger-nanos-sdk.git "${RUST_SDK}"
+ENV LEDGER_TARGETS=${RUST_SDK}/
+
 WORKDIR /app
 
 # Work around the git security to be able to get informations from repositories
