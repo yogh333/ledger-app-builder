@@ -81,7 +81,7 @@ ENV STAX_SDK=/opt/stax-secure-sdk
 COPY --from=LITE_BUILDER /opt/ /opt/
 
 # Default SDK
-ENV BOLOS_SDK=${NANOS_SDK}
+ENV BOLOS_SDK=${NANOSP_SDK}
 
 # Target files for Nano S, S+, X
 ENV RUST_SDK=/opt/rust-sdk
