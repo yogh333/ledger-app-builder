@@ -5,7 +5,7 @@ ENV LANG C.UTF-8
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ARG LLVM_VERSION=12
+ARG LLVM_VERSION=15
 
 RUN apt-get update && apt-get upgrade -qy && \
     apt-get install -qy \
@@ -61,7 +61,7 @@ RUN curl https://sh.rustup.rs -sSf | \
 ENV PATH=${CARGO_HOME}/bin:${PATH}
 
 # Adding ARMV6M target to the default toolchain
-RUN rustup target add thumbv6m-none-eabi
+#RUN rustup target add thumbv6m-none-eabi
 
 # Adding Rust standard library source code component
 RUN rustup component add rust-src
@@ -84,9 +84,7 @@ COPY --from=LITE_BUILDER /opt/ /opt/
 ENV BOLOS_SDK=${NANOSP_SDK}
 
 # Target files for Nano S, S+, X
-ENV RUST_SDK=/opt/rust-sdk
-RUN git clone https://github.com/LedgerHQ/ledger-nanos-sdk.git "${RUST_SDK}"
-ENV LEDGER_TARGETS=${RUST_SDK}/
+RUN cargo ledger setup
 
 WORKDIR /app
 
