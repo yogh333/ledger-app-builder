@@ -67,7 +67,7 @@ ENV PATH=${CARGO_HOME}/bin:${PATH}
 RUN rustup component add rust-src
 
 # Install cargo-ledger
-RUN cargo install --git https://github.com/LedgerHQ/cargo-ledger
+RUN cargo install --git https://github.com/yogh333/cargo-ledger.git --branch fix/workspace_support
 
 # Python packages commonly used by apps
 RUN pip3 install ledgerblue pytest
